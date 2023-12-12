@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .character {
+            width: 100px;
+            height: 150px;
+            margin: 10px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .character img {
+            max-width: 100%;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        .buttons button {
+            margin: 5px;
+        }
+
+        #pizza {
+            width: 100px;
+            height: 100px;
+        }
+
+        #message {
+            margin-top: 20px;
+        }
+        .mesi{
+            display: flex;
+            justify-content: center;
+        }
+        #pizza, #message{
+            display: block;
+  margin-left: 550px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mesi">
+    <div class="character" id="character1">
+        <img src="dragon.png" alt="Arlind">
+        <p>Pikët: <span id="points1">0</span></p>
+        <div class="buttons">
+            <button onclick="decrementPoints(1)">-</button>
+            <button onclick="incrementPoints(1)">+</button>
+        </div>
+    </div>
+    <div class="character" id="character2">
+        <img src="dragon1.png" alt="Inara">
+        <p>Pikët: <span id="points2">0</span></p>
+        <div class="buttons">
+            <button onclick="decrementPoints(2)">-</button>
+            <button onclick="incrementPoints(2)">+</button>
+        </div>
+    </div>
+    <div class="character" id="character3">
+        <img src="dragon2.png" alt="Isra">
+        <p>Pikët: <span id="points3">0</span></p>
+        <div class="buttons">
+            <button onclick="decrementPoints(3)">-</button>
+            <button onclick="incrementPoints(3)">+</button>
+        </div>
+    </div>
+    <div class="character" id="character4">
+        <img src="dragon3.png" alt="Dona">
+        <p>Pikët: <span id="points4">0</span></p>
+        <div class="buttons">
+            <button onclick="decrementPoints(4)">-</button>
+            <button onclick="incrementPoints(4)">+</button>
+        </div>
+    </div>
+    <div class="character" id="character5">
+        <img src="dragon4.png" alt="Mirjeta">
+        <p>Pikët: <span id="points5">0</span></p>
+        <div class="buttons">
+            <button onclick="decrementPoints(5)">-</button>
+            <button onclick="incrementPoints(5)">+</button>
+        </div>
+    </div>
+    <div class="character" id="character6">
+        <img src="dragon5.png" alt="Dasar">
+        <p>Pikët: <span id="points6">0</span></p>
+        <div class="buttons">
+            <button onclick="decrementPoints(6)">-</button>
+            <button onclick="incrementPoints(6)">+</button>
+        </div>
+    </div>
+    <div class="character" id="character7">
+        <img src="dragon6.png" alt="Ali">
+        <p>Pikët: <span id="points7">0</span></p>
+        <div class="buttons">
+            <button onclick="decrementPoints(7)">-</button>
+            <button onclick="incrementPoints(7)">+</button>
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+    <div id="pizza" style="display: flex;">
+        <img src="cocacola.png" style="width:100px" alt="CocaCola">
+        <img src="pizza.png" style="width:200px" alt="Pizza">
+    </div>
+<br><br>
+    <div id="message">
+        <p style="color:red; font-size:20px;" id="winMessage" style="display: none"></p>
+    </div>
+    <br><br><br>
+    <h1 style="font-size: 25px;">Rregullat e lojës:
+    </h1>
+    <p>Kush i grumbullon i pari 4 lojë të fituara e fiton Picën dhe nje Coca Cola</p>
+
+    <script>
+        // JavaScript code to handle the points and piza,coca cola
+        let totalPoints = 0;
+        let winnerName = "";
+
+        function checkForPizzaWin(characterNumber) {
+            const pointsSpan = document.getElementById(`points${characterNumber}`);
+            const currentPoints = parseInt(pointsSpan.textContent);
+
+            if (currentPoints >= 20) {
+                winnerName = document.getElementById(`character${characterNumber}`).getElementsByTagName("img")[0].alt;
+                document.getElementById('winMessage').textContent = `Urime, ${winnerName} keni fituar Picen dhe Coca Colen!`;
+                document.getElementById('winMessage').style.display = 'block';
+            } else {
+                document.getElementById('winMessage').style.display = 'none';
+            }
+        }
+
+        function incrementPoints(characterNumber) {
+            const pointsSpan = document.getElementById(`points${characterNumber}`);
+            const currentPoints = parseInt(pointsSpan.textContent);
+            pointsSpan.textContent = currentPoints + 5;
+            totalPoints++;
+            checkForPizzaWin(characterNumber);
+        }
+
+        function decrementPoints(characterNumber) {
+            const pointsSpan = document.getElementById(`points${characterNumber}`);
+            const currentPoints = parseInt(pointsSpan.textContent);
+            if (currentPoints > 0) {
+                pointsSpan.textContent = currentPoints - 5;
+                totalPoints--;
+                checkForPizzaWin(characterNumber);
+            }
+        }
+    </script>
+</body>
+</html>
